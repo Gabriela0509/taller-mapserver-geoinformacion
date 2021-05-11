@@ -1,0 +1,261 @@
+#######################################################
+#	Version: 0.2
+#   Licence: GNU GPL
+#	Autor: Gabriela Chamorro
+#   Contact: gabriela.chamorro at correounivalle.edu.co
+#	Tarea: Mapserver
+#   Materia: Geoinformacion en la WEB 
+#   Universidad del Valle - Especialización en Geomatica  
+
+
+# 	EXTENT 1059184.171 869783.081 1061021.441 870968.417
+#######################################################
+
+MAP
+	NAME Tarea_mapserver
+		SIZE 800 600
+		STATUS ON
+		#EXTENT [xmin] [ymin] [xmax] [ymax]
+		EXTENT 1053855.50 860198.93 1068480.77 879011.06
+		
+		SHAPEPATH "geodata/"
+		FONTSET "lib/fonts/fonts.txt"
+		SYMBOLSET "lib/symbols/symbols.sym"
+		
+		IMAGECOLOR 255 255 255
+		UNITS METERS
+
+	WEB
+		IMAGEPATH "/var/www/html/geoinformacion/mapserver-geoinformacion/tmp/"
+		IMAGEURL "tmp/"
+	END
+	
+	#Leyenda embebida
+	LEGEND
+		STATUS EMBED
+		IMAGECOLOR 247 250 252  
+		POSITION LL
+		KEYSIZE 20 12
+		KEYSPACING 5 5
+		LABEL
+			TYPE TRUETYPE
+			FONT "sans"
+			SIZE 9
+			COLOR 0 0 0
+		END
+		OUTLINECOLOR 51 51 51
+		#TRANSPARENT on
+	END
+	
+	SCALEBAR
+		STYLE 0
+		STATUS EMBED
+		SIZE 250 4
+		COLOR 0 0 0
+		UNITS METERS
+		INTERVALS 5
+		TRANSPARENT off
+		POSITION LR
+		BACKGROUNDCOLOR 255 255 255
+		IMAGECOLOR 255 255 255
+		OUTLINECOLOR 211 211 211
+		LABEL
+			COLOR 0 0 0
+			SIZE TINY
+		END 
+	END
+
+
+	LAYER
+		NAME "norte3"
+		TYPE POINT
+		STATUS ON
+		TRANSFORM OFF
+		POSTLABELCACHE TRUE
+		FEATURE
+			POINTS 
+				700 60
+			END
+		END
+		CLASS
+			SYMBOL 'norte3'
+			SIZE 120
+			COLOR 0 0 0
+			OUTLINECOLOR 0 0 0
+			STYLE END
+		END
+	END
+	
+	
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "barrios_cali.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "Barrios Cali"
+			STYLE
+				COLOR 255 255 255
+				OUTLINECOLOR 128 128 128
+			END
+		END
+	END
+	
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "comuna.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "Comuna Cali"
+			STYLE
+				COLOR 213 216 220
+				OUTLINECOLOR 81 90 90
+				OPACITY 60
+			END
+		END
+	END
+		
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "corregimientos.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "Corregimientos Cali"
+			STYLE
+				COLOR 171 235 198
+				OUTLINECOLOR 35 155 86
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "Rios.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "Rios Cali"
+			STYLE
+				COLOR 9 38 170
+				OUTLINECOLOR 9 38 170
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "eqp_cultura.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "eqp_cultura Cali"
+			STYLE
+				COLOR 128 0 128
+				OUTLINECOLOR 128 0 128
+			END
+		END
+	END
+	
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "eqp_salud.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "eqp_salud Cali"
+			STYLE
+				COLOR 25 178 245 
+				OUTLINECOLOR 25 178 245  
+			END
+		END
+	END
+	
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "eqp_educacion.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "eqp_educacion Cali"
+			STYLE
+				COLOR 242 249 17 
+				OUTLINECOLOR 242 249 17 
+			END
+		END
+	END
+	
+	
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "eqp_recreacion.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "eqp_recreacion Cali"
+			STYLE
+				COLOR  245 178 25   
+				OUTLINECOLOR  245 178 25  
+			END
+		END
+	END
+	
+	LAYER 
+		NAME "canchas_3115"
+		DATA "canchas_3115.tif"
+		TYPE RASTER
+		STATUS ON
+	END
+
+	
+	
+	LAYER
+		NAME "Grilla"
+		METADATA
+			"DESCRIPTION" "Grid"
+		END
+		TYPE LINE
+		STATUS ON
+		CLASS
+			NAME "Graticule"
+			COLOR 248 249 249
+			LABEL
+				COLOR 28 40 51 
+				FONT sans
+				TYPE truetype
+				SIZE 8
+				POSITION AUTO
+				PARTIALS FALSE
+
+			END
+		END
+		PROJECTION
+			"init=epsg:3115"
+		END
+		GRID
+			#LABELFORMAT DDMM
+			#MAXARCS 5
+			#MAXINTERVAL 5
+			#MAXSUBDIVIDE 2
+			
+			LABELFORMAT '%.0fm'
+			MININTERVAL 5000
+		END
+	END
+	
+	
+END
